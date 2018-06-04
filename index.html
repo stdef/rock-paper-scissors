@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock-paper-scissors</title>
+  <script type="text/javascript">
+
+  let playerSelection = prompt("Rock, Paper, Scissors?")
+
+  function computerPlay() {
+    let computerChoice = Math.floor(Math.random() *3 );
+    return computerChoice == 0 ? "Rock" :
+           computerChoice == 1 ? "Paper" : "Scissors";
+  }
+
+  function playRound(playerSelection, computerSelection) {
+    if (playerSelection == computerSelection) {
+      return "Draw. Try Again."
+    } else if (computerSelection == "Rock" && playerSelection != "Paper") {
+      return "You Lose! " + computerSelection + " beats " + playerSelection;
+    } else if (computerSelection == "Paper" && playerSelection != "Scissors") {
+      return "You Lose! " + computerSelection + " beats " + playerSelection;
+    } else if (computerSelection == "Scissors" && playerSelection != "Rock") {
+      return "You Lose! " + computerSelection + " beats " + playerSelection;
+    } else {
+      return "You Win! " + playerSelection + " beats " + computerSelection;
+    }
+  }
+
+  //5 round game
+  function game()
+
+
+  </script>
+</head>
+<body>
+
+</body>
+</html>
