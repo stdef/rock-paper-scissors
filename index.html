@@ -1,38 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rock-paper-scissors</title>
+  <title>Test</title>
   <script type="text/javascript">
 
-  let playerSelection = prompt("Rock, Paper, Scissors?")
+  function userPlay() {
+    let userChoice = prompt("What will you throw this round?");
+    let caseInsensitive = userChoice.charAt(0).toUpperCase() + userChoice.slice(1).toLowerCase();
+    return caseInsensitive;
+  }
 
   function computerPlay() {
-    let computerChoice = Math.floor(Math.random() *3 );
-    return computerChoice == 0 ? "Rock" :
-           computerChoice == 1 ? "Paper" : "Scissors";
+    return (Math.floor(Math.random() * 3)) == 0 ? 'Rock' :
+           (Math.floor(Math.random() * 3)) == 1 ? 'Paper' : 'Scissors';
   }
 
   function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-      return "Draw. Try Again."
-    } else if (computerSelection == "Rock" && playerSelection != "Paper") {
-      return "You Lose! " + computerSelection + " beats " + playerSelection;
-    } else if (computerSelection == "Paper" && playerSelection != "Scissors") {
-      return "You Lose! " + computerSelection + " beats " + playerSelection;
-    } else if (computerSelection == "Scissors" && playerSelection != "Rock") {
-      return "You Lose! " + computerSelection + " beats " + playerSelection;
+      return "Draw. Try again.";
+    } else if (playerSelection == 'Rock' && computerSelection == 'Scissors') {
+      return "You Win! " + playerSelection + " beats " + computerSelection + ".";
+    } else if (playerSelection == 'Paper' && computerSelection == 'Rock') {
+      return "You Win! " + playerSelection + " beats " + computerSelection + ".";
+    } else if (playerSelection == 'Scissors' && computerSelection == 'Paper') {
+      return "You Win! " + playerSelection + " beats " + computerSelection + ".";
     } else {
-      return "You Win! " + playerSelection + " beats " + computerSelection;
+      return "You Lose! " + computerSelection + " beats " + playerSelection + ".";
     }
   }
 
-  //5 round game
-  function game()
+  function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+      let playerSelection = userPlay();
+      let roundResult = playRound(playerSelection, computerPlay());
+      if (roundResult.includes("Draw")) {
+        console.log(`Draw. Player Score: ${playerScore} \t Computer Score: ${computerScore}`);
+        continue;
+      } if (roundResult.includes("Win!")) {
+        playerScore ++;
+      } else {
+        computerScore ++;
+      }
+      console.log(`Player Score: ${playerScore} \t Computer Score: ${computerScore}`);
+    }
+    if (playerScore > computerScore) {
+      console.log("You Win!");
+    } else {
+      console.log("You Lose!");
+    }
+  }
 
-
+  console.log(game())
   </script>
 </head>
 <body>
-
 </body>
 </html>
